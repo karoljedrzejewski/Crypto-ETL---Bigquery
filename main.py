@@ -10,6 +10,11 @@ API_KEY = os.getenv("API_KEY")
 
 
 if __name__ == "__main__":
-    trending_data = extract.extract_data('https://api.coingecko.com/api/v3/search/trending', API_KEY)    
-    df = transform.transform_data(trending_data['coins'])
-    load.load_df_to_gbq(df, dataset='cryptos', table_id='exchange', project_id=GCP_PROJECT_ID)
+    try:
+        trending_data = extract.extract_data('https://api.coingecko.com/api/v3/search/trending', API_KEY)    
+        df = transform.transform_data(trending_data['coins'])
+        load.load_df_to_gbq(df, dataset='cryptos', table_id='exchange', project_id=GCP_PROJECT_ID)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        print('Response content:', trending_data)
+        print(API_KEY)
