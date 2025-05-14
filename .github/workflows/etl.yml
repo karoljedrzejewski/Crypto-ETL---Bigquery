@@ -24,8 +24,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Write GCP credentials to file
-        run: |
-          printf "%s" "${{ secrets.GCP_CREDENTIALS }}" > gcp_key.json
+        run: echo '${{ secrets.GCP_CREDENTIALS }}' > gcp_key.json
 
       - name: Export environment variables
         run: |
