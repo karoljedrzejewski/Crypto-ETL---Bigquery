@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 import pandas as pd
+from datetime import datetime
 
 def transform_data(f, save=False):
     records = []
@@ -18,7 +19,8 @@ def transform_data(f, save=False):
             'name': name,
             'nameid': nameid,
             'price': price,
-            'price_change_percentage': price_change_percentage
+            'price_change_percentage': price_change_percentage,
+            'date': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         })
     df = pd.DataFrame(records)
     if save:
