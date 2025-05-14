@@ -4,23 +4,22 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 import pandas as pd
 
-def transform_data(save=False):
+def transform_data(f, save=False):
     records = []
-    with open('trending_data.json', 'r') as f:
-        for data in f:
-            data = json.loads(data)['item']
+    for data in f:
+        # data = json.loads(data)['item']
+        data_i = data['item']
+        name = data_i['name']
+        nameid = data_i['id']
+        price = data_i['data']['price']
+        price_change_percentage = data_i['data']['price_change_percentage_24h']['eur']
 
-            name = data['name']
-            nameid = data['id']
-            price = data['data']['price']
-            price_change_percentage = data['data']['price_change_percentage_24h']['eur']
-
-            records.append({
-                'name': name,
-                'nameid': nameid,
-                'price': price,
-                'price_change_percentage': price_change_percentage
-            })
+        records.append({
+            'name': name,
+            'nameid': nameid,
+            'price': price,
+            'price_change_percentage': price_change_percentage
+        })
     df = pd.DataFrame(records)
     if save:
         save_transformed_data(df)
