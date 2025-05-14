@@ -29,8 +29,9 @@ jobs:
       - name: Export environment variables
         run: |
           echo "GOOGLE_APPLICATION_CREDENTIALS=gcp_key.json" >> $GITHUB_ENV
-          echo "GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}" >> $GITHUB_ENV
-          echo "API_KEY_GH=${{ secrets.API_KEY_GH }}" >> $GITHUB_ENV
+        env:
+          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          API_KEY_GH: ${{ secrets.API_KEY_GH }}
 
       - name: Run ETL
         run: python main.py
