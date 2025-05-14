@@ -30,7 +30,7 @@ jobs:
         run: |
           echo "GOOGLE_APPLICATION_CREDENTIALS=gcp_key.json" >> $GITHUB_ENV
           echo "GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}" >> $GITHUB_ENV
-          echo "API_KEY=${{ secrets.API_KEY_GH }}" >> $GITHUB_ENV
+          echo "API_KEY_GH=${{ secrets.API_KEY_GH }}" >> $GITHUB_ENV
 
       - name: Run ETL
         run: python main.py
