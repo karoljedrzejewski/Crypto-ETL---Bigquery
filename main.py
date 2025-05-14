@@ -6,7 +6,7 @@ dotenv.load_dotenv()
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "gcp_key.json"
 GCP_PROJECT_ID = os.getenv("GCP_PROJECT_ID")
-API_KEY = os.getenv("API_KEY_GH")
+API_KEY = os.getenv("API_KEY")
 
 
 if __name__ == "__main__":
